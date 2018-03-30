@@ -12,38 +12,38 @@ window.onload = function() {
 
 function loosiYlesanded() {
 	for(var i=1; i < arv + 1; i ++){
-	
+
 	var uusYlesanne = document.createElement('p');
 	uusYlesanne.id = 'ylesanne' + i;
 	document.getElementById('ylesanded').appendChild(uusYlesanne);
 	var vastuseKoht = '<input type="text" id="vastus' + i + '">';
 	var tulemuseKoht = '<span id="tulemus' + i + '"></span>';
-	
+
 	var ylesandeTyyp = Math.round(3 * Math.random());
 	if(ylesandeTyyp == 0){
 		var arvX = Math.round(100 * Math.random());
 		var arvY = Math.round((100 - arvX) * Math.random());
-		oigeVastus = arvX + arvY;	
-		var kysimus = arvX + ' + ' + arvY; 
+		oigeVastus = arvX + arvY;
+		var kysimus = arvX + ' + ' + arvY;
 	}
 	if(ylesandeTyyp == 1){
 		var arvX = Math.round(100 * Math.random());
 		var arvY = Math.round(arvX * Math.random());
 		oigeVastus = arvX - arvY;
-		var kysimus = arvX + ' - ' + arvY; 
+		var kysimus = arvX + ' - ' + arvY;
 	}
 	if(ylesandeTyyp == 2){
 		var arvX = Math.round(10 * Math.random());
 		var arvY = Math.round(10 * Math.random());
 		oigeVastus = arvX * arvY;
-		var kysimus = arvX + ' * ' + arvY; 
+		var kysimus = arvX + ' ∙ ' + arvY;
 	}
 	if(ylesandeTyyp == 3){
 		var arvX = Math.round(10 * Math.random());
 		var arvY = 1 + Math.round(9 * Math.random());
 		oigeVastus = arvX;
 		arvX = arvX * arvY;
-		var kysimus = arvX + ' : ' + arvY; 
+		var kysimus = arvX + ' : ' + arvY;
 	}
 	vastused[i - 1] = oigeVastus;
 	uusYlesanne.innerHTML = kysimus + ' = ' + vastuseKoht + tulemuseKoht;
@@ -55,11 +55,23 @@ function loosiYlesanded() {
 	if(ylesandeTyyp == 3){heliFailid.push('jagada');}
 	numberSonadeks(arvY);
 	ytleMata();
-	
+
 	}
 	console.log(vastused);
 	document.getElementById('kontrolli').addEventListener('click', kontrolliVastused);
 	document.getElementById('kontrolli').setAttribute('value', 'Kontrolli vastuseid!');
+
+document.onkeydown = testKeyEvent;
+document.onkeypress = testKeyEvent
+document.onkeyup = testKeyEvent;
+
+function testKeyEvent(e) {
+
+    if (e.keyCode == 13) //We are using Enter key press event for test purpose.
+    {
+kontrolliVastused();
+    }
+}
 }
 
 	function numberSonadeks(arv){
